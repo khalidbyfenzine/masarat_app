@@ -56,6 +56,12 @@ const ListScreen = () => {
     navigate(`/post/${postId}`);
   };
 
+  // Function to calculate word count
+  const calculateWordCount = (text) => {
+    const words = text.split(/\s+/);
+    return words.length;
+  };
+
   return (
     <div className="container mt-4">
       <h1 className="mb-4">Post List</h1>
@@ -64,7 +70,9 @@ const ListScreen = () => {
         {currentPosts.map(post => (
           <div key={post.id} className="list-group-item d-flex justify-content-between align-items-center">
             <div onClick={() => navigateToPostDetails(post.id)}>
-              <h5 className="mb-1">User ID: {post.userId} | Post ID: {post.id}</h5>
+              <h5 className="mb-1">
+                User ID: {post.userId} | Post ID: {post.id} | Word Count: {calculateWordCount(post.body)}
+              </h5>
               <h6 className="mb-1">{post.title}</h6>
               <p className="mb-1">{post.body}</p>
             </div>
