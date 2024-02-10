@@ -43,9 +43,13 @@ const ListScreen = () => {
 
   const handleDelete = async (postId) => {
     try {
+      // Perform deletion logic, e.g., make a DELETE request to the server
       await axios.delete(`http://jsonplaceholder.typicode.com/posts/${postId}`);
-      const updatedPosts = posts.filter(post => post.id !== postId);
-      setPosts(updatedPosts);
+  
+      // Update the posts state by removing the deleted post
+      setPosts(prevPosts => prevPosts.filter(post => post.id !== postId));
+  
+      // Log the deletion action
       Logger.log(`Deleted post with ID ${postId}`);
     } catch (error) {
       console.error('Error deleting post:', error);
